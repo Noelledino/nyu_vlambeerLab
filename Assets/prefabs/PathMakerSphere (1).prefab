@@ -9,45 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1285474329264044}
+  m_RootGameObject: {fileID: 1040776508690058}
   m_IsPrefabParent: 1
---- !u!1 &1285474329264044
+--- !u!1 &1040776508690058
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4928452297376708}
-  - component: {fileID: 33236044257634230}
-  - component: {fileID: 65194294668006714}
-  - component: {fileID: 23235671783475570}
+  - component: {fileID: 4670332955126054}
+  - component: {fileID: 33279572789570810}
+  - component: {fileID: 135537860046105156}
+  - component: {fileID: 23778173077010208}
+  - component: {fileID: 114810991986550540}
   m_Layer: 0
-  m_Name: FloorTile
+  m_Name: PathMakerSphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4928452297376708
+--- !u!4 &4670332955126054
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285474329264044}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
+  m_GameObject: {fileID: 1040776508690058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23235671783475570
+--- !u!23 &23778173077010208
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285474329264044}
+  m_GameObject: {fileID: 1040776508690058}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -55,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f2d3ca2cc7c8f274db78fedb3bcb391e, type: 2}
+  - {fileID: 2100000, guid: 028842288f8b7554a9dc419106cb4c5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,22 +75,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33236044257634230
+--- !u!33 &33279572789570810
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285474329264044}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65194294668006714
-BoxCollider:
+  m_GameObject: {fileID: 1040776508690058}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114810991986550540
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285474329264044}
+  m_GameObject: {fileID: 1040776508690058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5575b50532c45f4984a0392f98e35f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 4928452297376708, guid: 65a6189e1bac1f549afc3dc95369929d,
+    type: 2}
+  forestPrefab: {fileID: 4719948459624862, guid: 3f783e93ee6c51642a94749a5b9a9782,
+    type: 2}
+  oasisPrefab: {fileID: 4180996228144074, guid: fc6f0342bed6e98449713cb81964b5c4,
+    type: 2}
+  snowPrefab: {fileID: 4258785913543424, guid: eca1464f1a5115c4eac79b521c857907, type: 2}
+  pathmakerSpherePrefab: {fileID: 4670332955126054}
+--- !u!135 &135537860046105156
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040776508690058}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

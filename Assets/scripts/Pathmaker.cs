@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // MAZE PROC GEN LAB
 // all students: complete steps 1-6, as listed in this file
@@ -16,26 +17,88 @@ public class Pathmaker : MonoBehaviour {
 
 //	DECLARE CLASS MEMBER VARIABLES:
 //	Declare a private integer called counter that starts at 0; 		// counter var will track how many floor tiles I've instantiated
+	int tileCount = 0;
 //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
+	public Transform floorPrefab;
+	public Transform forestPrefab;
+	public Transform oasisPrefab;
+	public Transform snowPrefab;
+
+	private bool isActive = true;
+
 //	Declare a public Transform called pathmakerSpherePrefab, assign the prefab in inspector; 		// you'll have to make a "pathmakerSphere" prefab later
+	public Transform pathmakerSpherePrefab;
+	int tileCountMax = 0;
 
+	public static int globalTileCount = 0;
 
-	void Update () {
-//		If counter is less than 50, then:
-//			Generate a random number from 0.0f to 1.0f;
-//			If random number is less than 0.25f, then rotate myself 90 degrees;
-//				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
-//				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
-//			// end elseIf
-
-//			Instantiate a floorPrefab clone at current position;
-//			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
-//			Increment counter;
-//		Else:
-//			Destroy my game object; 		// self destruct if I've made enough tiles already
+	void Start () {
+		tileCountMax = Random.Range (50, 200);
 	}
 
-} // end of class scope
+	void Update () {
+		if (Input.GetKeyDown (KeyCode.R)) {
+			Debug.Log ("Reset activated.");
+			globalTileCount = 0;
+			SceneManager.LoadScene ("mainLabScene");
+		}
+
+
+		if (isActive == true) {
+			
+//		If counter is less than 50, then:
+			if (tileCount < tileCountMax && globalTileCount <= 500) {	
+//			Generate a random number from 0.0f to 1.0f;
+				float randNum = Random.Range (0f, 1f);
+				if (randNum < .1f) {
+//			If random number is less than 0.25f, then rotate myself 90 degrees;
+					transform.Rotate (0f, 90f, 0f);
+				} else if (randNum >= .1 && randNum <= .2f) {
+//				... Else if number is 0.25f-0.5f, then rotate myself -90 degrees;
+					transform.Rotate (0f, -90f, 0f);
+				} else if (randNum >= .95f && randNum <= 1f) {
+//				... Else if number is 0.99f-1.0f, then instantiate a pathmakerSpherePrefab clone at my current position;
+					Transform newSphereClone = (Transform)Instantiate (pathmakerSpherePrefab, transform.position, Quaternion.identity);
+					Transform sphereParent = GameObject.Find ("Floor Tiles").transform;
+					newSphereClone.SetParent (sphereParent);
+//			// end elseIf
+				}
+//			Instantiate a floorPrefab clone at current position;
+				float tileGen = Random.Range (0, 1f);
+				if (tileGen < .25f) {
+					Transform newfloorClone = (Transform)Instantiate (forestPrefab, transform.position, Quaternion.identity);
+					Transform floorParent = GameObject.Find ("Floor Tiles").transform;
+					newfloorClone.SetParent (floorParent);
+				} else if (tileGen >= .25 && tileGen <= .49) {
+					Transform newfloorClone = (Transform)Instantiate (snowPrefab, transform.position, Quaternion.identity);
+					Transform floorParent = GameObject.Find ("Floor Tiles").transform;
+					newfloorClone.SetParent (floorParent);
+				} else if (tileGen >= .50 && tileGen <= .74) {
+					Transform newfloorClone = (Transform)Instantiate (snowPrefab, transform.position, Quaternion.identity);
+					Transform floorParent = GameObject.Find ("Floor Tiles").transform;
+					newfloorClone.SetParent (floorParent);
+				} else {
+					Transform newfloorClone = (Transform)Instantiate (oasisPrefab, transform.position, Quaternion.identity);
+					Transform floorParent = GameObject.Find ("Floor Tiles").transform;
+					newfloorClone.SetParent (floorParent);
+				}
+
+//			Move forward ("forward", as in, the direction I'm currently facing) by 5 units;
+				transform.position += transform.forward * 5f;
+//			Increment counter;
+				tileCount++;
+				globalTileCount++;
+//		Else:
+			} else {
+//			Destroy my game object; 	
+				isActive = false;
+			}	
+		}// self destruct if I've made enough tiles already
+
+	}
+	}
+
+ // end of class scope
 
 // MORE STEPS BELOW!!!........
 
